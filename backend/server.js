@@ -2,6 +2,7 @@ import "dotenv/config"
 import express from "express"
 import mongoose from "mongoose"
 import cors from "cors"
+import songRoutes from "./routes/songRoutes.js"
 
 const app = express()
 const PORT = process.env.PORT || 9000
@@ -9,6 +10,9 @@ const PORT = process.env.PORT || 9000
 // Middleware
 app.use(cors())
 app.use(express.json())
+
+// Routes
+app.use("/api/songs", songRoutes)
 
 // Connect to MongoDB and start server
 mongoose.connect(process.env.MONGO_URL)
