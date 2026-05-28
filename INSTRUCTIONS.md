@@ -64,13 +64,14 @@ PATCH /api/songs/:id/banger
 ### Skeleton to get you started
 
 ```javascript
-router.patch("/:id/banger", async (req, res) => {
-  try {
-    // Find the song by id and increase bangerVotes by 1
-    // Send back the updated song
-  } catch (error) {
-    res.status(400).json({ error: "Could not update song" })
-  }
+router.patch("/:id/banger", (req, res) => {
+  Song.findByIdAndUpdate(req.params.id, { /* what goes here? */ }, { new: true })
+    .then((result) => {
+      // Send the result back to the client
+    })
+    .catch(() => {
+      res.status(400).json({ error: "Could not update song" })
+    })
 })
 ```
 
@@ -103,13 +104,8 @@ PATCH /api/songs/:id/cringe
 ### Skeleton to get you started
 
 ```javascript
-router.patch("/:id/cringe", async (req, res) => {
-  try {
-    // Find the song by id and increase cringeVotes by 1
-    // Send back the updated song
-  } catch (error) {
-    res.status(400).json({ error: "Could not update song" })
-  }
+router.patch("/:id/cringe", (req, res) => {
+  // similar to banger endpoint
 })
 ```
 
@@ -141,13 +137,14 @@ DELETE /api/songs/:id
 ### Skeleton to get you started
 
 ```javascript
-router.delete("/:id", async (req, res) => {
-  try {
-    // Find the song by id and delete it
-    // Send back a message confirming it worked
-  } catch (error) {
-    res.status(400).json({ error: "Could not delete song" })
-  }
+router.delete("/:id", (req, res) => {
+  // Some way to get the song with the specific id and use a delete method.
+    .then((result) => {
+      // Send a confirmation message back to the client
+    })
+    .catch(() => {
+      res.status(400).json({ error: "Could not delete song" })
+    })
 })
 ```
 
